@@ -13,6 +13,8 @@ export ZSH="/home/liam/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git)
+plugins+=(zsh-vi-mode)
+
 
 
 
@@ -44,12 +46,11 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-
-
 source $ZSH/oh-my-zsh.sh
 
-# vi mode
+
+
+ # vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -73,3 +74,9 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
+alias rm=trash
+

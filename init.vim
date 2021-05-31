@@ -26,6 +26,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mhinz/vim-startify'
+Plug 'nvim-treesitter/highlight.lua'
+Plug 'mfussenegger/nvim-dap'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
 
 call plug#end()
 
@@ -69,6 +73,9 @@ call lightline#init()
 call lightline#colorscheme()
 
 source $HOME/.config/nvim/plug-config/coc.vim
+
+set cmdheight=1
+set noshowmode
 
 
 if has('python')                                                          
@@ -124,7 +131,6 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
-
 
 "autocmd BufReadPre *.tex let b:vimtex_main = 'Documentation.tex'
 au FileType tex let b:main_tex_file='Documentation.tex'
