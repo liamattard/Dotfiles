@@ -17,19 +17,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf.vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'sainnhe/gruvbox-material'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'vim-utils/vim-man'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 Plug 'mbbill/undotree'
 Plug 'itchyny/lightline.vim'
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mhinz/vim-startify'
-Plug 'nvim-treesitter/highlight.lua'
-Plug 'mfussenegger/nvim-dap'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
 
 call plug#end()
 
@@ -41,6 +37,7 @@ set noerrorbells
 set belloff=all
 set tabstop=4 softtabstop=4
 set shiftwidth=4
+set cmdheight=1
 set expandtab
 set smartindent
 set nu 
@@ -58,6 +55,7 @@ set foldlevel=99
 set pyxversion=3
 set splitbelow
 set scrolloff=5
+set mouse=a
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -74,9 +72,6 @@ call lightline#colorscheme()
 
 source $HOME/.config/nvim/plug-config/coc.vim
 
-set cmdheight=1
-set noshowmode
-
 
 if has('python')                                                          
     set pyx=2                                                               
@@ -89,12 +84,14 @@ endif
 
 let mapleader = ","
 
-nmap <leader>ne :NERDTree<cr>
+"nmap <leader>ne :NERDTree<cr>
+nmap <leader>ne :CocCommand explorer<cr>
 
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references) 
 nmap <F2> <Plug>(coc-rename)
 
+nnoremap <leader>f :Files<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -132,11 +129,51 @@ inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
+
 "autocmd BufReadPre *.tex let b:vimtex_main = 'Documentation.tex'
 au FileType tex let b:main_tex_file='Documentation.tex'
 
 "~~~AutoOpen~~~
 
 "autocmd VimEnter * NERDTree
-autocmd VimEnter * RainbowParentheses 
+"autocmd VimEnter * CocCommand explorer 
+autocmd VimEnter * RainbowToggle
 "autocmd VimEnter * Startify 
+"
+"
+
+
+function! FloatScroll(forward) abort
+  let float = coc#util#get_float()
+  if !float | return '' | endif
+  let buf = nvim_win_get_buf(float)
+  let buf_height = nvim_buf_line_count(buf)
+  let win_height = nvim_win_get_height(float)
+  if buf_height < win_height | return '' | endif
+  let pos = nvim_win_get_cursor(float)
+  if a:forward
+    if pos[0] == 1
+      let pos[0] += 3 * win_height / 4
+    elseif pos[0] + win_height / 2 + 1 < buf_height
+      let pos[0] += win_height / 2 + 1
+    else
+      let pos[0] = buf_height
+    endif
+  else
+    if pos[0] == buf_height
+      let pos[0] -= 3 * win_height / 4
+    elseif pos[0] - win_height / 2 + 1  > 1
+      let pos[0] -= win_height / 2 + 1
+    else
+      let pos[0] = 1
+    endif
+  endif
+  call nvim_win_set_cursor(float, pos)
+  return ''
+endfunction
+
+
+"Automatic getters and setters 
+
+inoremap <silent><expr> <down> coc#util#has_float() ? FloatScroll(1) : "\<down>"
+inoremap <silent><expr>  <up>  coc#util#has_float() ? FloatScroll(0) :  "\<up>"

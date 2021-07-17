@@ -1,0 +1,13 @@
+
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+    "java"
+    ],
+    "java.references.includeAccessors": true,
+    "java.referencesCodeLens.enabled":true,
+    "java.implementationsCodeLens.enabled": true,
+
+    "codeLens.enable": true,
+    "xml.java.home":"/usr/lib/jvm/java-11-openjdk-amd64"
+}
+
