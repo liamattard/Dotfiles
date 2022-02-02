@@ -1,13 +1,17 @@
 
 {
     "coc.preferences.formatOnSaveFiletypes": [
-    "java"
+    "java", "py"
     ],
-    "java.references.includeAccessors": true,
-    "java.referencesCodeLens.enabled":true,
-    "java.implementationsCodeLens.enabled": true,
-
     "codeLens.enable": true,
-    "xml.java.home":"/usr/lib/jvm/java-11-openjdk-amd64"
+    "python.pythonPath": "/home/liamattard/miniconda3/envs/colabTF/bin/",
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "explorer.filename.colored.enable":true
+    //"java.references.includeAccessors": true,
+    //"java.referencesCodeLens.enabled":true,
+    //"java.implementationsCodeLens.enabled": true,
+
+    //"xml.java.home":"/usr/lib/jvm/java-11-openjdk-amd64"
 }
 

@@ -1,23 +1,15 @@
-"
-"           Liam's init.vim
-"°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸
-"
-"
+"   ༼ つ ◕_◕ ༽つ 
+" Liam's init.vim
 
-syntax on
-
-
-"~~~~PLUGINS~~~~
-
+"PLUGINS
+"-------
 call plug#begin('~/.vim/plugged')
-                                                            
 Plug 'oblitum/rainbow'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf.vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'sainnhe/gruvbox-material'
-"Plug 'scrooloose/nerdtree'
 Plug 'vim-utils/vim-man'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'luochen1990/rainbow'
@@ -26,12 +18,17 @@ Plug 'itchyny/lightline.vim'
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mhinz/vim-startify'
-
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
+"Plug 'scrooloose/nerdtree'
+"Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 
-"~~~SETTINGS~~~
+"SETTINGS
+"--------
     
+syntax on
 set nohlsearch
 set noerrorbells
 set belloff=all
@@ -56,32 +53,34 @@ set pyxversion=3
 set splitbelow
 set scrolloff=5
 set mouse=a
+"For Polygot
+set nocompatible
+
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_background = 'soft'
 colorscheme gruvbox-material
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 
-let g:lightline = {'colorscheme' : 'seoul256'}
+
+"LightLine
+"--------
+let g:lightline = {'colorscheme' : 'PaperColor', 'background': 'light'}
+ call lightline#init()
+ call lightline#colorscheme()
+
+ source $HOME/.config/nvim/plug-config/coc.vim
 
 
-call lightline#init()
-call lightline#colorscheme()
+"if has('python')                                                          
+    "set pyx=2                                                               
+"elseif has('python3')                                                     
+    "set pyx=3                                                               
+"endif
 
-source $HOME/.config/nvim/plug-config/coc.vim
-
-
-if has('python')                                                          
-    set pyx=2                                                               
-elseif has('python3')                                                     
-    set pyx=3                                                               
-endif
-
-"~~~REMAPS~~~
-
-
+"REMAPS
+"------
 let mapleader = ","
 
 "nmap <leader>ne :NERDTree<cr>
@@ -106,7 +105,7 @@ tnoremap jj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 
 "For latex
-:map <leader>c :w<CR>:!bash ~/Documents/latex/compileLatex.sh<CR>
+:map <leader>c :w<CR>:!bash /home/liamattard/Documents/Masters/bibtex/pdflatex.sh/pdflatex.sh ARI5902Assignment.tex<CR>
 
 
 "For Python
@@ -133,15 +132,15 @@ inoremap {;<CR> {<CR>};<ESC>O
 "autocmd BufReadPre *.tex let b:vimtex_main = 'Documentation.tex'
 au FileType tex let b:main_tex_file='Documentation.tex'
 
-"~~~AutoOpen~~~
+"AutoOpen
+"--------
 
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * CocCommand explorer 
-autocmd VimEnter * RainbowToggle
+ autocmd VimEnter * RainbowToggle
 "autocmd VimEnter * Startify 
 "
 "
-
 
 function! FloatScroll(forward) abort
   let float = coc#util#get_float()
@@ -177,3 +176,7 @@ endfunction
 
 inoremap <silent><expr> <down> coc#util#has_float() ? FloatScroll(1) : "\<down>"
 inoremap <silent><expr>  <up>  coc#util#has_float() ? FloatScroll(0) :  "\<up>"
+ "use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+"let g:python3_host_prog = '/home/liamattard/miniconda3/envs/masters/bin/python3'
