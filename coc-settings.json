@@ -3,11 +3,14 @@
     "coc.preferences.formatOnSaveFiletypes": [
     "java", "py"
     ],
+    "coc.preferences.formatOnType": true,
     "codeLens.enable": true,
     "python.pythonPath": "/home/liamattard/miniconda3/envs/colabTF/bin/",
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
-    "explorer.filename.colored.enable":true
+    "explorer.filename.colored.enable":true,
+    "explorer.icon.enableNerdfont": true
+    //"explorer.icon.source":"vim-devicons"
     //"java.references.includeAccessors": true,
     //"java.referencesCodeLens.enabled":true,
     //"java.implementationsCodeLens.enabled": true,

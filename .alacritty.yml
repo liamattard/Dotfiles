@@ -1,0 +1,16 @@
+
+window:
+  padding:
+    x: 0
+    y: 10
+
+  #     - full: Borders and title bar
+  decorations: none
+
+font:
+  normal:
+    family: MesloLGS NF
+
+cursor:
+  style:
+    shape: Underline

@@ -20,8 +20,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
-"Plug 'scrooloose/nerdtree'
-"Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 
@@ -72,30 +70,25 @@ let g:lightline = {'colorscheme' : 'PaperColor', 'background': 'light'}
 
  source $HOME/.config/nvim/plug-config/coc.vim
 
-
-"if has('python')                                                          
-    "set pyx=2                                                               
-"elseif has('python3')                                                     
-    "set pyx=3                                                               
-"endif
-
 "REMAPS
 "------
 let mapleader = ","
 
 "nmap <leader>ne :NERDTree<cr>
-nmap <leader>ne :CocCommand explorer<cr>
+nmap <C-n> :CocCommand explorer<cr>
 
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gr <Plug>(coc-references) 
+nmap gd <Plug>(coc-definition)
+nmap gr <Plug>(coc-references) 
 nmap <F2> <Plug>(coc-rename)
 
 nnoremap <leader>f :Files<CR>
 nnoremap <C-p> :GFiles<CR>
+
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 nnoremap <space> za
 
 inoremap jj <ESC>
@@ -106,10 +99,6 @@ tnoremap <Esc> <C-\><C-n>
 
 "For latex
 :map <leader>c :w<CR>:!bash /home/liamattard/Documents/Masters/bibtex/pdflatex.sh/pdflatex.sh ARI5902Assignment.tex<CR>
-
-
-"For Python
-":map <leader>c :w<CR><C-J>apython3 setup.py<CR>
 
 vmap <C-c> <plug>NERDCommenterToggle
 nmap <C-c> <plug>NERDCommenterToggle
@@ -179,4 +168,4 @@ inoremap <silent><expr>  <up>  coc#util#has_float() ? FloatScroll(0) :  "\<up>"
  "use <c-space>for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 
-"let g:python3_host_prog = '/home/liamattard/miniconda3/envs/masters/bin/python3'
+set cmdheight=1
