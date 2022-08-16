@@ -20,6 +20,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
+Plug 'github/copilot.vim'
+Plug 'navarasu/onedark.nvim'
 call plug#end()
 
 
@@ -56,9 +58,11 @@ set nocompatible
 
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-let g:gruvbox_material_background = 'soft'
-colorscheme gruvbox-material
-set background=dark
+"let g:gruvbox_material_background = 'soft'
+"set background=dark
+"colorscheme gruvbox-material
+"" Vim
+colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 
 
@@ -98,10 +102,11 @@ tnoremap jj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 
 "For latex
-:map <leader>c :w<CR>:!bash /home/liamattard/Documents/Masters/bibtex/pdflatex.sh/pdflatex.sh ARI5902Assignment.tex<CR>
+:map <leader>c :w<CR>:!bash /home/liamattard/Documents/Masters/bibtex/pdflatex.sh/pdflatex.sh Documentation.tex<CR>
 
 vmap <C-c> <plug>NERDCommenterToggle
 nmap <C-c> <plug>NERDCommenterToggle
+nmap <C-p> :FZF<CR>
 
 noremap <Leader>y "*y
 noremap <Leader>p "*p
@@ -126,7 +131,7 @@ au FileType tex let b:main_tex_file='Documentation.tex'
 
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * CocCommand explorer 
- autocmd VimEnter * RainbowToggle
+ "autocmd VimEnter * RainbowToggle
 "autocmd VimEnter * Startify 
 "
 "

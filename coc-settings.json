@@ -1,15 +1,17 @@
 
 {
     "coc.preferences.formatOnSaveFiletypes": [
-    "java", "py"
+    "java", "py", "json"
     ],
     "coc.preferences.formatOnType": true,
     "codeLens.enable": true,
-    "python.pythonPath": "/home/liamattard/miniconda3/envs/colabTF/bin/",
+    "python.pythonPath": "$CONDA_PREFIX/bin/python",
     "python.linting.flake8Enabled": true,
-    "python.formatting.provider": "black",
+    "python.analysis.typeCheckingMode": "off",
+    "python.linting.enabled": true,
     "explorer.filename.colored.enable":true,
-    "explorer.icon.enableNerdfont": true
+    "explorer.icon.enableNerdfont": true,
+    "java.jdt.ls.vmargs": "-javaagent:/home/liamattard/Documents/gitProjects/lombok.jar -Xbootclasspath/a:/home/liamattard/Documents/gitProjects/lombok.jar"
     //"explorer.icon.source":"vim-devicons"
     //"java.references.includeAccessors": true,
     //"java.referencesCodeLens.enabled":true,

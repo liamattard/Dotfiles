@@ -101,6 +101,8 @@ alias ls="ls --color=auto"
 
 source ~/Documents/LS_COLORS/lscolors.sh
 
-export TERM=xterm-256color
+# export TERM=xterm-256color
 
+export TERM=alacritty
  
+chpwd() ls

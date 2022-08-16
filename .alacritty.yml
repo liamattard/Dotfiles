@@ -14,3 +14,15 @@ font:
 cursor:
   style:
     shape: Underline
+
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
+colors:
+  primary:
+    background: '0x24283b'
+    #foreground: '0x000000'
