@@ -1,15 +1,18 @@
-
 window:
+
+  startup_mode: Maximized
+
   padding:
-    x: 0
+    x: 10
     y: 10
 
-  #     - full: Borders and title bar
   decorations: none
+  opacity: 0.8
 
 font:
   normal:
-    family: MesloLGS NF
+    family: agave Nerd Font
+  size: 20
 
 cursor:
   style:
@@ -22,7 +25,5 @@ shell:
     - -c
     - "tmux attach || tmux"
 
-colors:
-  primary:
-    background: '0x24283b'
-    #foreground: '0x000000'
+import:
+  - ~/Dotfiles/alacritty/theme.yml
