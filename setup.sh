@@ -1,5 +1,15 @@
 #!//bin/bash
 
+echo "Setting up Tmux"
+
+if [ ! -f "/home/${whoami}/.tmux.conf" ]
+then
+    ln -s "$(pwd)"/tmux/.tmux.conf ~/.tmux.conf
+else 
+    "tmux already setup"
+fi
+
+echo "...."
 
 echo "Setting up Neovim"
 

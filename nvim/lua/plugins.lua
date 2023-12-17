@@ -10,4 +10,20 @@ return require('packer').startup(function(use)
 
     use ( 'nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'} )
 
+    use {
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
+
+    use 'mbbill/undotree'
+
+    use {
+        'goolord/alpha-nvim',
+        config = function ()
+            require'alpha'.setup(require'alpha.themes.dashboard'.config)
+        end
+    }
+
+
+    use "elihunter173/dirbuf.nvim"
 end)
