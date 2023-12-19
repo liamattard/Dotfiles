@@ -9,6 +9,11 @@ else
     "tmux already setup"
 fi
 
+if [ ! -d "/home/${whoami}/.tmux/plugins/tpm" ]
+then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 echo "...."
 
 echo "Setting up Neovim"

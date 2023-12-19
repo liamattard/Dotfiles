@@ -6,4 +6,4 @@ require("dirbuf").setup {
     write_cmd = "DirbufSync",
 }
 
-vim.api.nvim_set_keymap('n', '<Leader>fd', ':Dirbuf<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>e', ':Dirbuf<CR>', { noremap = true, silent = true })
