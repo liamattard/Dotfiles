@@ -1,45 +1,36 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-source ~/Dotfiles/.zshrc
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/liam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/liam/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/liam/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/liam/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# --------------------------------------------------------
+#                   Liam's .zshrc
+# --------------------------------------------------------
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Set options for history
+setopt histignorealldups sharehistory
+HISTFILE=~/.zsh_history
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# bun completions
-[ -s "/home/liam/.bun/_bun" ] && source "/home/liam/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
+# Aliases
 alias vim=nvim
+
+# Key bindings
+bindkey "^A" vi-beginning-of-line
+bindkey "^E" vi-end-of-line
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
+# Load custom scripts
+. ~/Dotfiles/zsh/vim_mode.sh
+. ~/Dotfiles/zsh/completion.sh
+
+# Install and configure oh-my-posh if not already installed
+if ! command -v oh-my-posh &> /dev/null; then
+    echo "oh-my-posh not found. Installing..."
+    curl -s https://ohmyposh.dev/install.sh | bash -s
+fi
+
+THEME="~/Dotfiles/zsh/oh_my_posh/catppuccin.omp.json"
+eval "$(oh-my-posh init zsh --config $THEME)"
+
+if [[ "$WORK_OR_PERSONAL" == "WORK" ]]; then
+    . /home/attardl/scripts/ilmt.sh
+    . /home/attardl/scripts/mq.sh
+    . /home/attardl/scripts/mq-farm.sh
+fi

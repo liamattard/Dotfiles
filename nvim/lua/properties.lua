@@ -9,11 +9,11 @@ vim.o.shiftwidth = 4
 
 vim.g.mapleader = " "
 
+vim.cmd([[colorscheme tokyonight]])
 
-vim.cmd[[colorscheme tokyonight]]
-
-
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
   autocmd VimResized * <commands>
-]], false)
-
+]],
+	false
+)

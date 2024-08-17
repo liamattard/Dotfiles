@@ -1,13 +1,17 @@
 window:
 
-  #  startup_mode: Maximized
+  startup_mode: Maximized
 
   padding:
     x: 10
     y: 10
 
   decorations: none
-  opacity: 0.8
+  opacity: 0.9
+
+  dimensions:
+    columns: 1536
+    lines: 864
 
 font:
   normal:
@@ -23,9 +27,13 @@ shell:
   args:
     - -l
     - -c
-    - "tmux attach || tmux"
+    - "tmux attach 2>/dev/null || tmux"
 env:
   TERM: xterm-256color
 
 import:
   - ~/Dotfiles/alacritty/theme.yml
+
+key_bindings:
+  - { key: V, mods: Control, action: Paste }
+

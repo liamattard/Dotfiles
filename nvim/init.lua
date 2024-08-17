@@ -1,10 +1,7 @@
-
 -- Liam's Neovim config
 
-print("Hi Liam")
+require("properties")
 
-require('properties')
+require("remaps")
 
-require('remaps')
-
-require('plugins')
+require("plugins")
