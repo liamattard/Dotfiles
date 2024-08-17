@@ -33,4 +33,6 @@ if [[ "$WORK_OR_PERSONAL" == "WORK" ]]; then
     . /home/attardl/scripts/ilmt.sh
     . /home/attardl/scripts/mq.sh
     . /home/attardl/scripts/mq-farm.sh
+
+    alias git-bash='/mnt/c/Program\ Files/Git/bin/bash.exe'
 fi
