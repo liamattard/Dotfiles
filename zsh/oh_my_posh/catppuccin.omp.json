@@ -11,6 +11,7 @@
   "blocks": [
     {
       "alignment": "left",
+      "newline": true,
       "segments": [
         {
           "background": "p:blue",
